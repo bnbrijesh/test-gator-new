@@ -41,5 +41,6 @@ jobs:
       - name: Run gator verify
         run: |
           for file in ${{ env.files}}; do
+            echo $file
             gator verify --engine=${{ matrix.engine }} --gatekeeper=${{ matrix.gatekeeper }} $file || exit 1
           done
