@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'policy/**'
   pull_request:
     branches:
       - main
+    paths:
+      - 'policy/**'
 
 jobs:
   gator-verify:
