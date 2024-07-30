@@ -12,7 +12,7 @@ tests:
     assertions:
     - violations: 3
     - message: initContainer
-      violations: 1
+      violations: 2
     - message: container
       violations: 1
     - message: ephemeralContainer
