@@ -41,7 +41,7 @@ jobs:
       - name: Find suite.yaml files
         id: find_files
         run: |
-          files=$(find policy/test -name "suits.yaml | tr '\n' ' ')
+          files=$(find policy/test -name "suits.yaml" | tr '\n' ' ')
           echo "files=$files" >> $GITHUB_ENV
 
       - name: Print found suite.yaml files for debugging
