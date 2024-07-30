@@ -36,10 +36,10 @@ jobs:
         id: find_files
         run: |
           files=$(find policy/test -name "suite.yaml")
-          echo "::set-output name=files::$files"
+          echo "files=$files" >> $GITHUB_ENV
 
       - name: Run gator verify
         run: |
-          for file in ${{ steps.find_files.outputs.files }}; do
+          for file in ${{ env.files}}; do
             gator verify --engine=${{ matrix.engine }} --gatekeeper=${{ matrix.gatekeeper }} $file || exit 1
           done
