@@ -39,12 +39,16 @@ jobs:
       - name: Find suite.yaml files
         id: find_files
         run: |
-          files=$(find policy/test -name "suite.yaml")
+          files=$(find policy/test -name "suite.yaml" | tr '\n' ' ')
           echo "files=$files" >> $GITHUB_ENV
+
+      - name: Print found suite.yaml files for debugging
+        run: |
+          echo "Found suite.yaml files: ${{ env.files }}"
 
       - name: Run gator verify
         run: |
-          for file in ${{ env.files}}; do
-            echo $file
+          for file in ${{ env.files }}; do
+            echo "Running gator verify on $file"
             gator verify --engine=${{ matrix.engine }} --gatekeeper=${{ matrix.gatekeeper }} $file || exit 1
           done
